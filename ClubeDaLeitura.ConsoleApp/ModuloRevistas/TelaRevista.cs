@@ -5,7 +5,9 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloRevistas
 {
     public class TelaRevista : Tela
     {
-        public static string ApresentarMenuRevista()
+        public RepositorioRevista repositorioRevista = null;
+        public RepositorioCaixa repositorioCaixa = null;
+        public string ApresentarMenuRevista()
         {
             Console.Clear();
 
@@ -24,17 +26,17 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloRevistas
             return opcao;
         }
 
-        public static void InserirNovaRevista()
+        public void InserirNovaRevista()
         {
             Revista novaRevista = ObterRevista();
 
             if (novaRevista == null)
                 return;
 
-            RepositorioRevista.Inserir(novaRevista);
+            repositorioRevista.Inserir(novaRevista);
         }
 
-        public static void EditarRevista()
+        public void EditarRevista()
         {
             Console.WriteLine("Editando Revista: ");
 
@@ -49,12 +51,12 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloRevistas
 
             Revista revistaAtualizada = ObterRevista();
 
-            RepositorioRevista.Editar(idSelecionado, revistaAtualizada);
+            repositorioRevista.Editar(idSelecionado, revistaAtualizada);
 
             Console.WriteLine("Revista atualizada com sucesso!");
         }
 
-        public static void ExcluirRevista()
+        public void ExcluirRevista()
         {
             Console.WriteLine("Excluindo Revista");
 
@@ -67,14 +69,14 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloRevistas
 
             int idSelecionado = EncontrarIdRevista();
 
-            RepositorioRevista.Excluir(idSelecionado);
+            repositorioRevista.Excluir(idSelecionado);
 
             Console.WriteLine("Revista excluída com sucesso!");
         }
 
-        public static bool VisualizarRevistas()
+        public bool VisualizarRevistas()
         {
-            List<Revista> listaRevistas = RepositorioRevista.SelecionarTodos();
+            List<Revista> listaRevistas = repositorioRevista.SelecionarTodos();
 
             Console.WriteLine("Visualizando revistas: ");
 
@@ -103,7 +105,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloRevistas
             return true;
         }
 
-        public static int EncontrarIdRevista()
+        public int EncontrarIdRevista()
         {
             int idSelecionado;
             bool idInvalido;
@@ -114,7 +116,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloRevistas
 
                 idSelecionado = Convert.ToInt32(Console.ReadLine());
 
-                idInvalido = RepositorioRevista.SelecionarPorId(idSelecionado) == null;
+                idInvalido = repositorioRevista.SelecionarPorId(idSelecionado) == null;
 
                 if (idInvalido)
                     Console.WriteLine("Id inválido, tente novamente");
@@ -124,14 +126,14 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloRevistas
             return idSelecionado;
         }
 
-        private static Revista ObterRevista()
+        private Revista ObterRevista()
         {
             Console.Clear();
 
             Console.WriteLine("------ Cadastrar Revista ------");
             Console.WriteLine();
 
-            List<Caixa> listaCaixas = RepositorioCaixa.SelecionarTodos();
+            List<Caixa> listaCaixas = repositorioCaixa.SelecionarTodos();
 
             if (listaCaixas.Count == 0)
             {

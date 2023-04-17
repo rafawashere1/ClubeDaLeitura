@@ -3,39 +3,39 @@ using ClubeDaLeitura.ConsoleApp.ModuloCaixas;
 
 namespace ClubeDaLeitura.ConsoleApp.ModuloRevistas
 {
+
     public class RepositorioRevista : Repositorio
     {
-        public static List<Revista> listaRevistas = new();
-
-        public static void Inserir(Revista novaRevista)
+        public void Inserir(Revista novaRevista)
         {
             listaRevistas.Add(novaRevista);
         }
 
-        public static void CadastrarAlgumasRevistasAutomaticamente()
-        {
-            Caixa caixa = null;
+        //public void CadastrarAlgumasRevistasAutomaticamente()
+        //{
 
-            foreach (Caixa c in RepositorioCaixa.listaCaixas)
-            {
-                if (c.Id == 1)
-                {
-                    caixa = c;
-                    break;
-                }
-            }
+        //    Caixa caixa = null;
 
-            Revista revista = new("Harry Potter", "13", "1999", caixa);
+        //    foreach (Caixa c in RepositorioCaixa.listaCaixas)
+        //    {
+        //        if (c.Id == 1)
+        //        {
+        //            caixa = c;
+        //            break;
+        //        }
+        //    }
 
-            listaRevistas.Add(revista);
-        }
+        //    Revista revista = new("Harry Potter", "13", "1999", caixa);
 
-        public static List<Revista> SelecionarTodos()
+        //    listaRevistas.Add(revista);
+        //}
+
+        public List<Revista> SelecionarTodos()
         {
             return listaRevistas;
         }
 
-        public static Revista SelecionarPorId(int idSelecionado)
+        public Revista SelecionarPorId(int idSelecionado)
         {
             Revista revista = null;
 
@@ -51,7 +51,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloRevistas
             return revista;
         }
 
-        internal static void Editar(int idSelecionado, Revista revistaAtualizada)
+        public void Editar(int idSelecionado, Revista revistaAtualizada)
         {
             Revista revista = SelecionarPorId(idSelecionado);
 
@@ -61,7 +61,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloRevistas
             revista.Caixa = revistaAtualizada.Caixa;
         }
 
-        internal static void Excluir(int idSelecionado)
+        public void Excluir(int idSelecionado)
         {
             Revista revista = SelecionarPorId(idSelecionado);
 

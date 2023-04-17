@@ -4,7 +4,8 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloCaixas
 {
     public class TelaCaixa : Tela
     {
-        public static string ApresentarMenuCaixa()
+        public RepositorioCaixa repositorioCaixa = null;
+        public string ApresentarMenuCaixa()
         {
             Console.Clear();
 
@@ -22,14 +23,14 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloCaixas
             return opcao;
         }
 
-        public static void InserirNovaCaixa()
+        public void InserirNovaCaixa()
         {
             Caixa novaCaixa = ObterCaixa();
 
-            RepositorioCaixa.Inserir(novaCaixa);
+            repositorioCaixa.Inserir(novaCaixa);
         }
 
-        public static void EditarCaixa()
+        public void EditarCaixa()
         {
             Console.WriteLine("Editando Caixa: ");
 
@@ -44,12 +45,12 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloCaixas
 
             Caixa caixaAtualizada = ObterCaixa();
 
-            RepositorioCaixa.Editar(idSelecionado, caixaAtualizada);
+            repositorioCaixa.Editar(idSelecionado, caixaAtualizada);
 
             Console.WriteLine("Caixa editada com sucesso!");
         }
 
-        public static void ExcluirCaixa()
+        public void ExcluirCaixa()
         {
             Console.WriteLine("Excluindo Caixa: ");
 
@@ -62,14 +63,14 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloCaixas
 
             int idSelecionado = EncontrarIdCaixa();
 
-            RepositorioCaixa.Excluir(idSelecionado);
+            repositorioCaixa.Excluir(idSelecionado);
 
             Console.WriteLine("Caixa excluída com sucesso!");
         }
 
-        public static bool VisualizarCaixas()
+        public bool VisualizarCaixas()
         {
-            List<Caixa> listaCaixas = RepositorioCaixa.SelecionarTodos();
+            List<Caixa> listaCaixas = repositorioCaixa.SelecionarTodos();
 
             Console.WriteLine("Visualizando caixas: ");
 
@@ -98,7 +99,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloCaixas
             return true;
         }
 
-        private static Caixa ObterCaixa()
+        private Caixa ObterCaixa()
         {
             Console.Clear();
 
@@ -119,7 +120,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloCaixas
             return caixa;
         }
 
-        public static int EncontrarIdCaixa()
+        public int EncontrarIdCaixa()
         {
             int idSelecionado;
             bool idInvalido;
@@ -130,7 +131,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloCaixas
 
                 idSelecionado = Convert.ToInt32(Console.ReadLine());
 
-                idInvalido = RepositorioCaixa.SelecionarPorId(idSelecionado) == null;
+                idInvalido = repositorioCaixa.SelecionarPorId(idSelecionado) == null;
 
                 if (idInvalido)
                     Console.WriteLine("Id inválido, tente novamente");

@@ -4,14 +4,13 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloAmigos
 {
     public class RepositorioAmigo : Repositorio
     {
-        private static List<Amigo> listaAmigos = new();
 
-        public static void Inserir(Amigo novoAmigo)
+        public void Inserir(Amigo novoAmigo)
         {
             listaAmigos.Add(novoAmigo);
         }
 
-        public static void Editar(int idSelecionado, Amigo amigoAtualizado)
+        public void Editar(int idSelecionado, Amigo amigoAtualizado)
         {
             Amigo amigo = SelecionarPorId(idSelecionado);
 
@@ -21,26 +20,26 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloAmigos
             amigo.Endereco = amigoAtualizado.Endereco;
         }
 
-        public static void Excluir(int idSelecionado)
+        public void Excluir(int idSelecionado)
         {
             Amigo amigo = SelecionarPorId(idSelecionado);
 
             listaAmigos.Remove(amigo);
         }
 
-        public static void CadastrarAlgunsAmigosAutomaticamente()
+        public void CadastrarAlgunsAmigosAutomaticamente()
         {
             Amigo amigo = new("Rafael", "José", "(51) 99661-6240", "R. Itapetininga");
 
             listaAmigos.Add(amigo);
         }
 
-        public static List<Amigo> SelecionarTodos()
+        public List<Amigo> SelecionarTodos()
         {
             return listaAmigos;
         }
 
-        public static Amigo SelecionarPorId(int idSelecionado)
+        public Amigo SelecionarPorId(int idSelecionado)
         {
             Amigo amigo = null;
 

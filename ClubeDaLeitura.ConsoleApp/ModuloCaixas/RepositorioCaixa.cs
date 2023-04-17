@@ -1,15 +1,16 @@
-﻿namespace ClubeDaLeitura.ConsoleApp.ModuloCaixas
-{
-    public class RepositorioCaixa
-    {
-        public static List<Caixa> listaCaixas = new();
+﻿using ClubeDaLeitura.ConsoleApp.Compartilhado;
 
-        public static void Inserir(Caixa novaCaixa)
+namespace ClubeDaLeitura.ConsoleApp.ModuloCaixas
+{
+    public class RepositorioCaixa : Repositorio
+    {
+
+        public void Inserir(Caixa novaCaixa)
         {
             listaCaixas.Add(novaCaixa);
         }
 
-        public static void Editar(int idSelecionado, Caixa caixaAtualizada)
+        public void Editar(int idSelecionado, Caixa caixaAtualizada)
         {
             Caixa caixa = SelecionarPorId(idSelecionado);
 
@@ -18,26 +19,26 @@
             caixa.Numero = caixaAtualizada.Numero;
         }
 
-        public static void Excluir(int idSelecionado)
+        public void Excluir(int idSelecionado)
         {
             Caixa caixa = SelecionarPorId(idSelecionado);
 
             listaCaixas.Remove(caixa);
         }
 
-        public static void CadastrarAlgumasCaixasAutomaticamente()
+        public void CadastrarAlgumasCaixasAutomaticamente()
         {
             Caixa caixa = new("Terror", "Vermelho", 10);
 
             listaCaixas.Add(caixa);
         }
 
-        public static List<Caixa> SelecionarTodos()
+        public List<Caixa> SelecionarTodos()
         {
             return listaCaixas;
         }
 
-        public static Caixa SelecionarPorId(int idSelecionado)
+        public Caixa SelecionarPorId(int idSelecionado)
         {
             Caixa caixa = null;
 

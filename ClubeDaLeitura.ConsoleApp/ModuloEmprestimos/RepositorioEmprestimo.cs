@@ -4,20 +4,19 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloEmprestimos
 {
     public class RepositorioEmprestimo : Repositorio
     {
-        private static List<Emprestimo> listaEmprestimos = new();
 
-        public static List<Emprestimo> SelecionarTodos()
+        public List<Emprestimo> SelecionarTodos()
         {
             return listaEmprestimos;
         }
 
-        public static void Inserir(Emprestimo emprestimo)
+        public void Inserir(Emprestimo emprestimo)
         {
             emprestimo.Amigo.temEmprestimo = true; 
 
             listaEmprestimos.Add(emprestimo);
         }
-        public static void Editar(int idSelecionado, Emprestimo emprestimoAtualizado)
+        public void Editar(int idSelecionado, Emprestimo emprestimoAtualizado)
         {
             Emprestimo emprestimo = SelecionarPorId(idSelecionado);
 
@@ -27,7 +26,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloEmprestimos
             emprestimo.DataDevolucao = emprestimoAtualizado.DataDevolucao;
         }
 
-        public static void Excluir(int idSelecionado)
+        public void Excluir(int idSelecionado)
         {
             Emprestimo emprestimo = SelecionarPorId(idSelecionado);
 
@@ -36,7 +35,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloEmprestimos
             listaEmprestimos.Remove(emprestimo);
         }
 
-        public static Emprestimo SelecionarPorId(int idSelecionado)
+        public Emprestimo SelecionarPorId(int idSelecionado)
         {
             Emprestimo emprestimo = null;
 

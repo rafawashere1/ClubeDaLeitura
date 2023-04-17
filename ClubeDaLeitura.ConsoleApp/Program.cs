@@ -7,12 +7,39 @@ namespace ClubeDaLeitura.ConsoleApp
 {
     internal class Program
     {
-
+        /*
+         requisito 1: arrumar o menu
+         requisito 2: arrumar o cadastrar caixas automaticamente
+         requisito 3: utilizar melhor a herança
+         requisito 4: arrumar a visualizacao do emprestimo
+         */
         static void Main(string[] args)
         {
-            //RepositorioCaixa.CadastrarAlgumasCaixasAutomaticamente();
-            //RepositorioAmigo.CadastrarAlgunsAmigosAutomaticamente();
-            //RepositorioRevista.CadastrarAlgumasRevistasAutomaticamente();
+            RepositorioCaixa repositorioCaixa = new();
+            //repositorioCaixa.CadastrarAlgumasCaixasAutomaticamente();
+
+            RepositorioAmigo repositorioAmigo = new();
+            //repositorioAmigo.CadastrarAlgunsAmigosAutomaticamente();
+
+            RepositorioRevista repositorioRevista = new();
+            //repositorioRevista.CadastrarAlgumasRevistasAutomaticamente();
+
+            RepositorioEmprestimo repositorioEmprestimo = new();
+
+            TelaAmigo telaAmigo = new();
+            telaAmigo.repositorioAmigo = repositorioAmigo;
+
+            TelaCaixa telaCaixa = new();
+            telaCaixa.repositorioCaixa = repositorioCaixa;
+
+            TelaRevista telaRevista = new();
+            telaRevista.repositorioRevista = repositorioRevista;
+            telaRevista.repositorioCaixa = repositorioCaixa;
+
+            TelaEmprestimo telaEmprestimo = new();
+            telaEmprestimo.repositorioRevista = repositorioRevista;
+            telaEmprestimo.repositorioEmprestimo = repositorioEmprestimo;
+            telaEmprestimo.repositorioAmigo = repositorioAmigo;
 
             while (true)
             {
@@ -22,89 +49,89 @@ namespace ClubeDaLeitura.ConsoleApp
                 {
                     case "1":
 
-                        string opcaoAmigo = TelaAmigo.ApresentarMenuAmigo();
+                        string opcaoAmigo = telaAmigo.ApresentarMenuAmigo();
 
                         if (opcaoAmigo == "1")
-                            TelaAmigo.InserirNovoAmigo();
+                            telaAmigo.InserirNovoAmigo();
 
                         else if (opcaoAmigo == "2")
-                            TelaAmigo.EditarAmigo();
+                            telaAmigo.EditarAmigo();
 
                         else if (opcaoAmigo == "3")
-                            TelaAmigo.ExcluirAmigo();
+                            telaAmigo.ExcluirAmigo();
 
                         else if (opcaoAmigo == "4")
                         {
-                            TelaAmigo.VisualizarAmigos();
+                            telaAmigo.VisualizarAmigos();
                             Console.ReadKey();
                         }
-                           
+
                         else if (opcaoAmigo == "S")
                             continue;
 
                         break;
 
                     case "2":
-                        string opcaoCaixa = TelaCaixa.ApresentarMenuCaixa();
+                        string opcaoCaixa = telaCaixa.ApresentarMenuCaixa();
 
                         if (opcaoCaixa == "1")
-                            TelaCaixa.InserirNovaCaixa();
+                            telaCaixa.InserirNovaCaixa();
 
                         else if (opcaoCaixa == "2")
-                            TelaCaixa.EditarCaixa();
+                            telaCaixa.EditarCaixa();
 
                         else if (opcaoCaixa == "3")
-                            TelaCaixa.ExcluirCaixa();
+                            telaCaixa.ExcluirCaixa();
 
                         else if (opcaoCaixa == "4")
                         {
-                            TelaCaixa.VisualizarCaixas();
+                            telaCaixa.VisualizarCaixas();
                             Console.ReadKey();
                         }
-                        
+
                         else if (opcaoCaixa == "S")
                             continue;
                         break;
 
                     case "3":
-                        string opcaoRevista = TelaRevista.ApresentarMenuRevista();
+                        string opcaoRevista = telaRevista.ApresentarMenuRevista();
 
                         if (opcaoRevista == "1")
-                            TelaRevista.InserirNovaRevista();
+                            telaRevista.InserirNovaRevista();
 
                         else if (opcaoRevista == "2")
-                            TelaRevista.EditarRevista();
+                            telaRevista.EditarRevista();
 
                         else if (opcaoRevista == "3")
-                            TelaRevista.ExcluirRevista();
+                            telaRevista.ExcluirRevista();
 
                         else if (opcaoRevista == "4")
                         {
-                            TelaCaixa.VisualizarCaixas();
+                            telaRevista.VisualizarRevistas();
                             Console.ReadKey();
                         }
-                           
+
                         else if (opcaoRevista == "S")
                             continue;
                         break;
 
                     case "4":
-                        string opcaoEmprestimo = TelaEmprestimo.ApresentarMenuEmprestimo();
+                        string opcaoEmprestimo = telaEmprestimo.ApresentarMenuEmprestimo();
 
                         if (opcaoEmprestimo == "1")
-                            TelaEmprestimo.InserirNovoEmprestimo();
+                            telaEmprestimo.InserirNovoEmprestimo();
 
                         else if (opcaoEmprestimo == "2")
-                            TelaEmprestimo.EditarEmprestimo();
+                            telaEmprestimo.EditarEmprestimo();
 
                         else if (opcaoEmprestimo == "3")
-                            TelaEmprestimo.ExcluirEmprestimo();
+                            telaEmprestimo.ExcluirEmprestimo();
 
                         else if (opcaoEmprestimo == "4")
                         {
-                            TelaEmprestimo.VisualizarEmprestimos();
+                            telaEmprestimo.VisualizarEmprestimos();
                             Console.ReadKey();
-                        }                           
+                        }
                         break;
 
                     case "S":

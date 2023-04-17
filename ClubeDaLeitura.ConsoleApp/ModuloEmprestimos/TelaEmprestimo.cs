@@ -6,7 +6,13 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloEmprestimos
 {
     public class TelaEmprestimo : Tela
     {
-        public static string ApresentarMenuEmprestimo()
+        public RepositorioEmprestimo repositorioEmprestimo = null;
+        public RepositorioAmigo repositorioAmigo = null;
+        public RepositorioRevista repositorioRevista = null;
+
+        TelaAmigo telaAmigo = null;
+        TelaRevista telaRevista = null;
+        public string ApresentarMenuEmprestimo()
         {
             Console.Clear();
 
@@ -25,17 +31,17 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloEmprestimos
             return opcao;
         }
 
-        public static void InserirNovoEmprestimo()
+        public void InserirNovoEmprestimo()
         {
             Emprestimo novoEmprestimo = ObterEmprestimo();
 
             if (novoEmprestimo == null)
                 return;
 
-            RepositorioEmprestimo.Inserir(novoEmprestimo);
+            repositorioEmprestimo.Inserir(novoEmprestimo);
         }
 
-        public static void EditarEmprestimo()
+        public void EditarEmprestimo()
         {
             Console.WriteLine("Editando Emprestimo: ");
 
@@ -50,12 +56,12 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloEmprestimos
 
             Emprestimo emprestimoAtualizado = ObterEmprestimo();
 
-            RepositorioEmprestimo.Editar(idSelecionado, emprestimoAtualizado);
+            repositorioEmprestimo.Editar(idSelecionado, emprestimoAtualizado);
 
             Console.WriteLine("Emprestimo atualizado com sucesso!");
         }
 
-        public static void ExcluirEmprestimo()
+        public void ExcluirEmprestimo()
         {
             Console.WriteLine("Excluindo empréstimo: ");
 
@@ -68,12 +74,12 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloEmprestimos
 
             int idSelecionado = EncontrarIdEmprestimo();
 
-            RepositorioEmprestimo.Excluir(idSelecionado);
+            repositorioEmprestimo.Excluir(idSelecionado);
 
             Console.WriteLine("Emprestimo Excluído com sucesso!");
         }
 
-        private static int EncontrarIdEmprestimo()
+        private int EncontrarIdEmprestimo()
         {
             int idSelecionado;
             bool idInvalido;
@@ -84,7 +90,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloEmprestimos
 
                 idSelecionado = Convert.ToInt32(Console.ReadLine());
 
-                idInvalido = RepositorioEmprestimo.SelecionarPorId(idSelecionado) == null;
+                idInvalido = repositorioEmprestimo.SelecionarPorId(idSelecionado) == null;
 
                 if (idInvalido)
                     Console.WriteLine("Id inválido, tente novamente");
@@ -94,9 +100,9 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloEmprestimos
             return idSelecionado;
         }
 
-        public static bool VisualizarEmprestimos()
+        public bool VisualizarEmprestimos()
         {
-            List<Emprestimo> listaEmprestimos = RepositorioEmprestimo.SelecionarTodos();
+            List<Emprestimo> listaEmprestimos = repositorioEmprestimo.SelecionarTodos();
 
             if (listaEmprestimos.Count == 0)
             {
@@ -123,15 +129,15 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloEmprestimos
             return true;
         }
 
-        private static Emprestimo ObterEmprestimo()
+        private Emprestimo ObterEmprestimo()
         {
             Console.Clear();
 
             Console.WriteLine("------ Cadastro de Emprestimo ------");
             Console.WriteLine();
 
-            List<Amigo> listaAmigos = RepositorioAmigo.SelecionarTodos();
-            List<Revista> listaRevistas = RepositorioRevista.SelecionarTodos();
+            List<Amigo> listaAmigos = repositorioAmigo.SelecionarTodos();
+            List<Revista> listaRevistas = repositorioRevista.SelecionarTodos();
 
             if (listaAmigos.Count == 0)
             {
@@ -145,7 +151,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloEmprestimos
                 return null;
             }
 
-            TelaAmigo.VisualizarAmigos();
+            telaAmigo.VisualizarAmigos();
 
             bool continuar = true;
 
@@ -154,7 +160,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloEmprestimos
             while (continuar == true)
             {
 
-                amigo = RepositorioAmigo.SelecionarPorId(TelaAmigo.EncontrarIdAmigo());
+                amigo = repositorioAmigo.SelecionarPorId(telaAmigo.EncontrarIdAmigo());
 
                 if (amigo.temEmprestimo == true)
                 {
@@ -166,9 +172,9 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloEmprestimos
                     break;
             }
 
-            TelaRevista.VisualizarRevistas();
+            telaRevista.VisualizarRevistas();
 
-            Revista revista = RepositorioRevista.SelecionarPorId(TelaRevista.EncontrarIdRevista());
+            Revista revista = repositorioRevista.SelecionarPorId(telaRevista.EncontrarIdRevista());
 
             DateTime dataAgora = DateTime.Now;
 

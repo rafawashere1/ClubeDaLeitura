@@ -4,7 +4,8 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloAmigos
 {
     public class TelaAmigo : Tela
     {
-        public static string ApresentarMenuAmigo()
+        public RepositorioAmigo repositorioAmigo = null;
+        public string ApresentarMenuAmigo()
         {
             Console.Clear();
 
@@ -22,14 +23,14 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloAmigos
             return opcao;
         }
 
-        public static void InserirNovoAmigo()
+        public void InserirNovoAmigo()
         {
             Amigo novoAmigo = ObterAmigo();
 
-            RepositorioAmigo.Inserir(novoAmigo);
+            repositorioAmigo.Inserir(novoAmigo);
         }
 
-        public static void EditarAmigo()
+        public void EditarAmigo()
         {
             Console.WriteLine("Editando Amigo: ");
 
@@ -44,11 +45,11 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloAmigos
 
             Amigo amigoAtualizado = ObterAmigo();
 
-            RepositorioAmigo.Editar(idSelecionado, amigoAtualizado);
+            repositorioAmigo.Editar(idSelecionado, amigoAtualizado);
 
             Console.WriteLine("Amigo editado com sucesso!");
         }
-        public static void ExcluirAmigo()
+        public void ExcluirAmigo()
         {
             Console.WriteLine("Excluindo Amigo: ");
 
@@ -61,14 +62,14 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloAmigos
 
             int idSelecionado = EncontrarIdAmigo();
 
-            RepositorioAmigo.Excluir(idSelecionado);
+            repositorioAmigo.Excluir(idSelecionado);
 
             Console.WriteLine("Amigo excluído com sucesso!");
         }
 
-        public static bool VisualizarAmigos()
+        public bool VisualizarAmigos()
         {
-            List<Amigo> listaAmigos = RepositorioAmigo.SelecionarTodos();
+            List<Amigo> listaAmigos = repositorioAmigo.SelecionarTodos();
 
             Console.Clear();
             Console.WriteLine("Visualizando amigos: ");
@@ -99,7 +100,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloAmigos
             return true;
         }
 
-        private static Amigo ObterAmigo()
+        private Amigo ObterAmigo()
         {
 
             Console.Clear();
@@ -124,7 +125,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloAmigos
             return amigo;
         }
 
-        public static int EncontrarIdAmigo()
+        public int EncontrarIdAmigo()
         {
             int idSelecionado;
             bool idInvalido;
@@ -135,7 +136,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloAmigos
 
                 idSelecionado = Convert.ToInt32(Console.ReadLine());
 
-                idInvalido = RepositorioAmigo.SelecionarPorId(idSelecionado) == null;
+                idInvalido = repositorioAmigo.SelecionarPorId(idSelecionado) == null;
 
                 if (idInvalido)
                     Console.WriteLine("Id inválido, tente novamente");
