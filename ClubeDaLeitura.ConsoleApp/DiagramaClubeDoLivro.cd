@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ClubeDaLeitura.ConsoleApp.ModuloAmigos.Amigo">
+    <Position X="3" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAEgAAAAAAIAAAAAAAAAAAAAAAAAAAAAAEAEAA=</HashCode>
+      <FileName>ModuloAmigos\Amigo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClubeDaLeitura.ConsoleApp.ModuloAmigos.RepositorioAmigo">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAFAAAAAQAABAAAAAABAAAAAAEQAAA=</HashCode>
+      <FileName>ModuloAmigos\RepositorioAmigo.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="listaAmigos" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="ClubeDaLeitura.ConsoleApp.ModuloAmigos.TelaAmigo">
+    <Position X="5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAIAAAABAAAAAAAQAAAAAAAAAAAAAQAAAAMAAAAAA=</HashCode>
+      <FileName>ModuloAmigos\TelaAmigo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClubeDaLeitura.ConsoleApp.ModuloCaixas.Caixa">
+    <Position X="3" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAABAAAAAAAAAEAEAAAAAAAAAABAAA=</HashCode>
+      <FileName>ModuloCaixas\Caixa.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClubeDaLeitura.ConsoleApp.ModuloCaixas.RepositorioCaixa">
+    <Position X="0.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAEIAAAAQAAAAAAAAABAAAAAAEQAAA=</HashCode>
+      <FileName>ModuloCaixas\RepositorioCaixa.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="listaCaixas" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="ClubeDaLeitura.ConsoleApp.ModuloCaixas.TelaCaixa">
+    <Position X="5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAQAACgAAIEAAAAAAAACQAAAAAA=</HashCode>
+      <FileName>ModuloCaixas\TelaCaixa.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClubeDaLeitura.ConsoleApp.ModuloRevistas.RepositorioRevista">
+    <Position X="8.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAQAAAEAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>ModuloRevistas\RepositorioRevista.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="listaRevistas" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="ClubeDaLeitura.ConsoleApp.ModuloRevistas.Revista">
+    <Position X="11.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAIAAAAAAAAAKAAAAAAgAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>ModuloRevistas\Revista.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClubeDaLeitura.ConsoleApp.ModuloRevistas.TelaRevista">
+    <Position X="13" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AhAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ModuloRevistas\TelaRevista.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClubeDaLeitura.ConsoleApp.Program">
+    <Position X="14.25" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
