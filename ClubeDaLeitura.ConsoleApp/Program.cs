@@ -9,37 +9,25 @@ namespace ClubeDaLeitura.ConsoleApp
     {
         /*
          requisito 1: arrumar o menu
-         requisito 2: arrumar o cadastrar caixas automaticamente
-         requisito 3: utilizar melhor a herança
-         requisito 4: arrumar a visualizacao do emprestimo
+         requisito 2: utilizar melhor a herança
+         requisito 3: validar se entidade existe
          */
         static void Main(string[] args)
         {
             RepositorioCaixa repositorioCaixa = new();
-            //repositorioCaixa.CadastrarAlgumasCaixasAutomaticamente();
-
             RepositorioAmigo repositorioAmigo = new();
-            //repositorioAmigo.CadastrarAlgunsAmigosAutomaticamente();
+            RepositorioRevista repositorioRevista = new(repositorioCaixa);
+            RepositorioEmprestimo repositorioEmprestimo = new(repositorioAmigo, repositorioRevista);
 
-            RepositorioRevista repositorioRevista = new();
-            //repositorioRevista.CadastrarAlgumasRevistasAutomaticamente();
+            TelaAmigo telaAmigo = new(repositorioAmigo);
+            TelaCaixa telaCaixa = new(repositorioCaixa);
+            TelaRevista telaRevista = new(repositorioRevista, repositorioCaixa);
+            TelaEmprestimo telaEmprestimo = new(repositorioEmprestimo, repositorioAmigo, repositorioRevista, telaAmigo, telaRevista);
 
-            RepositorioEmprestimo repositorioEmprestimo = new();
-
-            TelaAmigo telaAmigo = new();
-            telaAmigo.repositorioAmigo = repositorioAmigo;
-
-            TelaCaixa telaCaixa = new();
-            telaCaixa.repositorioCaixa = repositorioCaixa;
-
-            TelaRevista telaRevista = new();
-            telaRevista.repositorioRevista = repositorioRevista;
-            telaRevista.repositorioCaixa = repositorioCaixa;
-
-            TelaEmprestimo telaEmprestimo = new();
-            telaEmprestimo.repositorioRevista = repositorioRevista;
-            telaEmprestimo.repositorioEmprestimo = repositorioEmprestimo;
-            telaEmprestimo.repositorioAmigo = repositorioAmigo;
+            repositorioCaixa.CadastrarAlgumasCaixasAutomaticamente();
+            repositorioAmigo.CadastrarAlgunsAmigosAutomaticamente();
+            repositorioRevista.CadastrarAlgumasRevistasAutomaticamente();
+            repositorioEmprestimo.CadastrarAlgunsEmprestimosAutomaticamente();
 
             while (true)
             {

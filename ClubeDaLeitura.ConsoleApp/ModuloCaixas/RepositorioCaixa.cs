@@ -4,6 +4,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloCaixas
 {
     public class RepositorioCaixa : Repositorio
     {
+        public List<Caixa> listaCaixas = new();
 
         public void Inserir(Caixa novaCaixa)
         {

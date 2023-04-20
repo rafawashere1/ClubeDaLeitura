@@ -4,7 +4,12 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloCaixas
 {
     public class TelaCaixa : Tela
     {
-        public RepositorioCaixa repositorioCaixa = null;
+        private readonly RepositorioCaixa _repositorioCaixa;
+
+        public TelaCaixa(RepositorioCaixa repositorioCaixa)
+        {
+            _repositorioCaixa = repositorioCaixa;
+        }
         public string ApresentarMenuCaixa()
         {
             Console.Clear();
@@ -27,7 +32,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloCaixas
         {
             Caixa novaCaixa = ObterCaixa();
 
-            repositorioCaixa.Inserir(novaCaixa);
+            _repositorioCaixa.Inserir(novaCaixa);
         }
 
         public void EditarCaixa()
@@ -45,7 +50,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloCaixas
 
             Caixa caixaAtualizada = ObterCaixa();
 
-            repositorioCaixa.Editar(idSelecionado, caixaAtualizada);
+            _repositorioCaixa.Editar(idSelecionado, caixaAtualizada);
 
             Console.WriteLine("Caixa editada com sucesso!");
         }
@@ -63,16 +68,19 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloCaixas
 
             int idSelecionado = EncontrarIdCaixa();
 
-            repositorioCaixa.Excluir(idSelecionado);
+            _repositorioCaixa.Excluir(idSelecionado);
 
             Console.WriteLine("Caixa excluída com sucesso!");
         }
 
         public bool VisualizarCaixas()
         {
-            List<Caixa> listaCaixas = repositorioCaixa.SelecionarTodos();
+            List<Caixa> listaCaixas = _repositorioCaixa.SelecionarTodos();
+
+            Console.Clear();
 
             Console.WriteLine("Visualizando caixas: ");
+            Console.WriteLine();
 
             if (listaCaixas.Count == 0)
             {
@@ -131,10 +139,15 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloCaixas
 
                 idSelecionado = Convert.ToInt32(Console.ReadLine());
 
-                idInvalido = repositorioCaixa.SelecionarPorId(idSelecionado) == null;
+                idInvalido = _repositorioCaixa.SelecionarPorId(idSelecionado) == null;
 
                 if (idInvalido)
+                {
+                    Console.WriteLine();
                     Console.WriteLine("Id inválido, tente novamente");
+                    Console.WriteLine();
+                }
+                    
 
             } while (idInvalido);
 

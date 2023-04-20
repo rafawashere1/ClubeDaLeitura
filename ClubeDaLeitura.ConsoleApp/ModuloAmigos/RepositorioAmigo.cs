@@ -4,6 +4,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloAmigos
 {
     public class RepositorioAmigo : Repositorio
     {
+        public List<Amigo> listaAmigos = new();
 
         public void Inserir(Amigo novoAmigo)
         {

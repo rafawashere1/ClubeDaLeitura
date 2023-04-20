@@ -3,32 +3,40 @@ using ClubeDaLeitura.ConsoleApp.ModuloCaixas;
 
 namespace ClubeDaLeitura.ConsoleApp.ModuloRevistas
 {
-
+   
     public class RepositorioRevista : Repositorio
     {
+        private readonly RepositorioCaixa _repositorioCaixa;
+
+        public List<Revista> listaRevistas = new();
+
+        public RepositorioRevista(RepositorioCaixa repositorioCaixa)
+        {
+            _repositorioCaixa = repositorioCaixa;
+        }
         public void Inserir(Revista novaRevista)
         {
             listaRevistas.Add(novaRevista);
         }
 
-        //public void CadastrarAlgumasRevistasAutomaticamente()
-        //{
+        public void CadastrarAlgumasRevistasAutomaticamente()
+        {
 
-        //    Caixa caixa = null;
+            Caixa caixa = null;
 
-        //    foreach (Caixa c in RepositorioCaixa.listaCaixas)
-        //    {
-        //        if (c.Id == 1)
-        //        {
-        //            caixa = c;
-        //            break;
-        //        }
-        //    }
+            foreach (Caixa c in _repositorioCaixa.listaCaixas)
+            {
+                if (c.Id == 1)
+                {
+                    caixa = c;
+                    break;
+                }
+            }
 
-        //    Revista revista = new("Harry Potter", "13", "1999", caixa);
+            Revista revista = new("Harry Potter", "13", "1999", caixa);
 
-        //    listaRevistas.Add(revista);
-        //}
+            listaRevistas.Add(revista);
+        }
 
         public List<Revista> SelecionarTodos()
         {

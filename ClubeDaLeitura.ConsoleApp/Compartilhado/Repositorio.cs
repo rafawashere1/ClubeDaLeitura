@@ -1,15 +1,27 @@
-﻿using ClubeDaLeitura.ConsoleApp.ModuloAmigos;
-using ClubeDaLeitura.ConsoleApp.ModuloCaixas;
-using ClubeDaLeitura.ConsoleApp.ModuloEmprestimos;
-using ClubeDaLeitura.ConsoleApp.ModuloRevistas;
-
-namespace ClubeDaLeitura.ConsoleApp.Compartilhado
+﻿namespace ClubeDaLeitura.ConsoleApp.Compartilhado
 {
     public class Repositorio
     {
-        public List<Revista> listaRevistas = new();
-        public List<Amigo> listaAmigos = new();
-        public List<Emprestimo> listaEmprestimos = new();
-        public List<Caixa> listaCaixas = new();
+
     }
 }
+
+// CONTINUAR TESTANDO QUANDO SOBRAR TEMPO
+// CONTINUAR TESTANDO QUANDO SOBRAR TEMPO
+// CONTINUAR TESTANDO QUANDO SOBRAR TEMPO
+
+//    public class Repositorio<T> where T : Entidade
+//    {
+//        protected List<T> entidades;
+
+//        public Repositorio()
+//        {
+//            entidades = new List<T>();
+//        }
+
+//        public void Inserir(T entidade)
+//        {
+//            entidades.Add(entidade);
+//        }
+//    }
+//}

@@ -5,8 +5,14 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloRevistas
 {
     public class TelaRevista : Tela
     {
-        public RepositorioRevista repositorioRevista = null;
-        public RepositorioCaixa repositorioCaixa = null;
+        private readonly RepositorioRevista _repositorioRevista;
+        private readonly RepositorioCaixa _repositorioCaixa;
+
+        public TelaRevista(RepositorioRevista repositorioRevista, RepositorioCaixa repositorioCaixa)
+        {
+            _repositorioRevista = repositorioRevista;
+            _repositorioCaixa = repositorioCaixa;
+        }
         public string ApresentarMenuRevista()
         {
             Console.Clear();
@@ -33,7 +39,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloRevistas
             if (novaRevista == null)
                 return;
 
-            repositorioRevista.Inserir(novaRevista);
+            _repositorioRevista.Inserir(novaRevista);
         }
 
         public void EditarRevista()
@@ -51,7 +57,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloRevistas
 
             Revista revistaAtualizada = ObterRevista();
 
-            repositorioRevista.Editar(idSelecionado, revistaAtualizada);
+            _repositorioRevista.Editar(idSelecionado, revistaAtualizada);
 
             Console.WriteLine("Revista atualizada com sucesso!");
         }
@@ -69,16 +75,19 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloRevistas
 
             int idSelecionado = EncontrarIdRevista();
 
-            repositorioRevista.Excluir(idSelecionado);
+            _repositorioRevista.Excluir(idSelecionado);
 
             Console.WriteLine("Revista excluída com sucesso!");
         }
 
         public bool VisualizarRevistas()
         {
-            List<Revista> listaRevistas = repositorioRevista.SelecionarTodos();
+            List<Revista> listaRevistas = _repositorioRevista.SelecionarTodos();
+
+            Console.Clear();
 
             Console.WriteLine("Visualizando revistas: ");
+            Console.WriteLine();
 
             if (listaRevistas.Count == 0)
             {
@@ -88,7 +97,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloRevistas
 
             Console.ForegroundColor = ConsoleColor.Red;
 
-            Console.WriteLine("{0,-10} | {1,-30} | {2,-30} | {3,-30} | {4,-30}", "Id", "Coleção", "Número da Edição", "Ano da Revista", "Caixa");
+            Console.WriteLine("{0,-10} | {1,-40} | {2,-30} | {3,-30} | {4,-30}", "Id", "Coleção", "Número da Edição", "Ano da Revista", "Caixa");
 
             Console.WriteLine("-------------------------------------------------------------------------------------------------------------------------------");
 
@@ -96,7 +105,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloRevistas
 
             foreach (Revista r in listaRevistas)
             {
-                Console.WriteLine("{0,-10} | {1,-40} | {2,-30} | {3,-30}| {4,-30}",
+                Console.WriteLine("{0,-10} | {1,-40} | {2,-30} | {3,-30} | {4,-30}",
                     r.Id, r.Colecao, r.NumeroEdicao, r.AnoRevista, r.Caixa.Etiqueta);
             }
 
@@ -116,10 +125,15 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloRevistas
 
                 idSelecionado = Convert.ToInt32(Console.ReadLine());
 
-                idInvalido = repositorioRevista.SelecionarPorId(idSelecionado) == null;
+                idInvalido = _repositorioRevista.SelecionarPorId(idSelecionado) == null;
 
                 if (idInvalido)
+                {
+                    Console.WriteLine();
                     Console.WriteLine("Id inválido, tente novamente");
+                    Console.WriteLine();
+                }
+                    
 
             } while (idInvalido);
 
@@ -133,8 +147,8 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloRevistas
             Console.WriteLine("------ Cadastrar Revista ------");
             Console.WriteLine();
 
-            List<Caixa> listaCaixas = repositorioCaixa.SelecionarTodos();
-
+            List<Caixa> listaCaixas = _repositorioCaixa.SelecionarTodos();
+            
             if (listaCaixas.Count == 0)
             {
                 Console.WriteLine("Não é possível cadastrar uma revista sem cadastrar uma caixa antes!");

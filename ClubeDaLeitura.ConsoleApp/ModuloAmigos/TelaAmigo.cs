@@ -4,7 +4,12 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloAmigos
 {
     public class TelaAmigo : Tela
     {
-        public RepositorioAmigo repositorioAmigo = null;
+        private readonly RepositorioAmigo _repositorioAmigo;
+
+        public TelaAmigo(RepositorioAmigo repositorioAmigo)
+        {
+            _repositorioAmigo = repositorioAmigo;
+        }
         public string ApresentarMenuAmigo()
         {
             Console.Clear();
@@ -27,7 +32,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloAmigos
         {
             Amigo novoAmigo = ObterAmigo();
 
-            repositorioAmigo.Inserir(novoAmigo);
+            _repositorioAmigo.Inserir(novoAmigo);
         }
 
         public void EditarAmigo()
@@ -45,7 +50,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloAmigos
 
             Amigo amigoAtualizado = ObterAmigo();
 
-            repositorioAmigo.Editar(idSelecionado, amigoAtualizado);
+            _repositorioAmigo.Editar(idSelecionado, amigoAtualizado);
 
             Console.WriteLine("Amigo editado com sucesso!");
         }
@@ -62,16 +67,17 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloAmigos
 
             int idSelecionado = EncontrarIdAmigo();
 
-            repositorioAmigo.Excluir(idSelecionado);
+            _repositorioAmigo.Excluir(idSelecionado);
 
             Console.WriteLine("Amigo excluído com sucesso!");
         }
 
         public bool VisualizarAmigos()
         {
-            List<Amigo> listaAmigos = repositorioAmigo.SelecionarTodos();
+            List<Amigo> listaAmigos = _repositorioAmigo.SelecionarTodos();
 
             Console.Clear();
+
             Console.WriteLine("Visualizando amigos: ");
             Console.WriteLine();
 
@@ -85,7 +91,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloAmigos
 
             Console.WriteLine("{0,-10} | {1,-40} | {2,-30} | {3,-30} | {4,-30}", "Id", "Nome", "Nome do Responsável", "Telefone", "Endereço");
 
-            Console.WriteLine("----------------------------------------------------------------------------------------------------------------------------------");
+            Console.WriteLine("-----------------------------------------------------------------------------------------------------------------------------------------");
 
             Console.ResetColor();
 
@@ -136,10 +142,15 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloAmigos
 
                 idSelecionado = Convert.ToInt32(Console.ReadLine());
 
-                idInvalido = repositorioAmigo.SelecionarPorId(idSelecionado) == null;
+                idInvalido = _repositorioAmigo.SelecionarPorId(idSelecionado) == null;
 
                 if (idInvalido)
+                {
+                    Console.WriteLine();
                     Console.WriteLine("Id inválido, tente novamente");
+                    Console.WriteLine();
+                }
+                    
 
             } while (idInvalido);
 
